@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧教育教学应急管理中心平台</title>
+</head>
+<!-- 格式化浏览器默认样式 -->
+<link rel="stylesheet" href="css/init.css">
+<!-- layui CSS -->
+<link rel="stylesheet" href="layui/css/layui.css">
+<!-- 轮播图 -->
+<link rel="stylesheet" href="css/swiper_3.4.2_css.css">
+<!-- 首页css样式 -->
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/public.css">
+
+<body>
+    <!-- tbody dom内容主体 -->
+    <div class="tbody">
+        <div class="header">
+            <div class="head_contil">
+                <p style="font-size: 14px;color: #54669b;">欢迎您登录山东省教育资源数据管理平台!</br>2020年9月18日 星期五</p>
+                <ul class="nav">
+                    <li>区域管理统计</li>
+                    <li>学校管理统计</li>
+                    <li>年级管理统计</li>
+                    <li>班级管理统计</li>
+                </ul>
+                <div style="display: flex;align-items: center;">
+                    <img src="" alt="">
+                    <!-- 选择框 -->
+                    <p style="color: #66a8cf;font-size: 16px;">山东省临沂教育局山东省临沂教育局</p>
+                    <i class="layui-icon layui-icon-triangle-d"></i>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section_top">
+                <div class="section_top_left">
+                    <!-- 区域地图 -->
+                    <div class="RegionalMap public-span">
+                        <p class="public-span-lg">区域地图</p>
+                    </div>
+                    <!-- 区域学校 -->
+                    <div class="RegionalSchools public-span">
+                        <p class="public-span-lg">区域学校</p>
+                    </div>
+                </div>
+                <!-- 区域教师 -->
+                <div class="RegionalTeachers public-span">
+                    <p class="public-span-lg">区域教师</p>
+                    <p class="public-span-sm">区域教师数量</p>
+                    <!-- 图例 -->
+                    <div class="legend">
+                        <span class="sm-blue"><span class="layui-badge-dot layui-bg-blue"></span>&nbsp;高中教师</span>
+                        <span class="sm-green"><span class="layui-badge-dot layui-bg-green"></span>&nbsp;初中教师</span>
+                        <span class="sm-orgin"><span class="layui-badge-dot layui-bg-orange"></span>&nbsp;小学教师</span>
+                    </div>
+
+                    <!-- 区域教师数量-柱状图滚动条容器 -->
+                    <div id="RegionalTeachersDom" style="height: 360px;width: 900px;margin-top: 5px;">
+                        <!-- 柱状图容器 -->
+                        <div id="RegionalTeachersChart" style="height: 340px;width: 1500px;"></div>
+                    </div>
+
+                    <p class="public-span-sm">区域日活跃老师总人数</p>
+                    <div class="legend">
+                        <span class="sm-blue"><span class="layui-badge-dot layui-bg-blue"></span>&nbsp;区域日活跃老师总人数</span>
+                    </div>
+                    <!-- 区域日活跃老师总人数-折线图滚动条容器 -->
+                    <div id="RegionalTeachersLineDom" style="height: 340px;width: 900px;margin-top: 25px;">
+                        <!-- 折线图容器 -->
+                        <div id="RegionalTeachersLine" style="height: 330px;width: 1500px;"></div>
+                    </div>
+                </div>
+                <!-- 区域学生 -->
+                <div class="RegionalStudents public-span">
+                    <p class="public-span-lg">区域学生</p>
+                    <p class="public-span-sm">区域学生总人数</p>
+                    <!-- 图例 -->
+                    <div class="legend">
+                        <span class="sm-blue"><span class="layui-badge-dot layui-bg-blue"></span>&nbsp;高中学生总人数</span>
+                        <span class="sm-green"><span class="layui-badge-dot layui-bg-green"></span>&nbsp;初中学生总人数</span>
+                        <span class="sm-orgin"><span class="layui-badge-dot layui-bg-orange"></span>&nbsp;小学学生总人数</span>
+                    </div>
+
+                    <!-- 区域学生总人数-柱状图滚动条容器 -->
+                    <div id="RegionalStudentDom" style="height: 167px;width: 413px;margin-top: 5px;margin: 0 auto;">
+                        <!-- 柱状图容器 -->
+                        <div id="RegionalStudentChart" style="height: 160px;width: 1500px;"></div>
+                    </div>
+
+                    <!-- 饼图 -->
+                    <div class="PieChart">
+                        <div class="PieChart-left">
+                            <p class="public-span-sm" style="margin-bottom: 10px;">区域年级学生总人数</p>
+                            <!-- 图例 -->
+                            <div class="legend">
+                                <span class="sm-blue" style="margin-right: 0;"><span
+                                        class="layui-badge-dot layui-bg-blue"></span>&nbsp;高中</span>&nbsp;
+                                <span class="sm-green" style="margin-right: 0;"><span
+                                        class="layui-badge-dot layui-bg-green"></span>&nbsp;七八九年级</span>&nbsp;
+                                <span class="sm-orgin" style="margin-right: 0;"><span
+                                        class="layui-badge-dot layui-bg-orange"></span>&nbsp;一至六年级</span>
+                            </div>
+                            <!-- 饼图 -->
+                            <!-- 柱状图容器 -->
+                            <div id="StudentPieChartChart-left" style="height: 125px;width: 198px;"></div>
+                        </div>
+                        <div class="PieChart-right">
+                            <p class="public-span-sm" style="margin-bottom: 10px;">区域年级学生优秀人数</p>
+                            <!-- 图例 -->
+                            <div class="legend">
+                                <span class="sm-blue" style="margin-right: 0;"><span
+                                        class="layui-badge-dot layui-bg-blue"></span>&nbsp;高中</span>&nbsp;
+                                <span class="sm-green" style="margin-right: 0;"><span
+                                        class="layui-badge-dot layui-bg-green"></span>&nbsp;七八九年级</span>&nbsp;
+                                <span class="sm-orgin" style="margin-right: 0;"><span
+                                        class="layui-badge-dot layui-bg-orange"></span>&nbsp;一至六年级</span>
+                            </div>
+                            <!-- 饼图 -->
+                            <!-- 柱状图容器 -->
+                            <div id="StudentPieChartChart-right" style="height: 125px;width: 198px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 星选示范课 -->
+                    <p class="public-span-sm">星选示范课</p>
+                </div>
+            </div>
+            <!-- 区域资源 -->
+            <div class="RegionalResources public-span">
+                <p class="public-span-lg">区域资源</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- js脚本 -->
+    <!-- jquery函数库 -->
+    <script src="js/jquery.min.js"></script>
+    <!-- vue核心 -->
+    <script src="js/vue.min.js"></script>
+    <!-- 滚动条 -->
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <!-- 轮播图 -->
+    <script src="js/swiper_3.4.2_js.js"></script>
+    <!-- 百度数据可视化 -->
+    <script src="js/echarts.min.js"></script>
+    <!-- 下拉选择框四级联动 -->
+    <script src="js/jsAddress.js"></script>
+    <!-- 首页js -->
+    <script src="index.js"></script>
+</body>
+
+</html>
