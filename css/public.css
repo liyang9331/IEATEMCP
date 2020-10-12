@@ -35,6 +35,14 @@
         color: #87d9ff;
         margin-top: 60px;
 }
+.fz-14-blue{
+    font-size: 14px;
+    color: #87d9ff;
+}
+.fz-14-white{
+    font-size: 14px;
+    color: #fff;
+}
 
 /* 修改layui默认下三角的样式 */
 .layui-icon-triangle-d{

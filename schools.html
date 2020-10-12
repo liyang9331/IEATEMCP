@@ -13,7 +13,7 @@
 <!-- 轮播图 -->
 <link rel="stylesheet" href="css/swiper_3.4.2_css.css">
 <!-- 首页css样式 -->
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/school.css">
 <link rel="stylesheet" href="css/public.css">
 <link rel="stylesheet" href="css/page.css">
 
@@ -24,8 +24,8 @@
             <div class="head_contil">
                 <p style="font-size: 14px;color: #54669b;">欢迎您登录山东省教育资源数据管理平台!</br>{{Tdate}}</p>
                 <ul class="nav">
-                    <li class="active" onclick="tigert('index.html')">区域管理统计</li>
-                    <li onclick="tigert('schools.html')">学校管理统计</li>
+                    <li onclick="tigert('index.html')">区域管理统计</li>
+                    <li class="active" onclick="tigert('schools.html')">学校管理统计</li>
                     <li onclick="tigert('grade.html')">年级管理统计</li>
                     <li onclick="tigert('class.html')">班级管理统计</li>
                 </ul>
@@ -43,8 +43,33 @@
                 <div class="section_top_left">
                     <!-- 区域地图 -->
                     <div class="RegionalMap public-span">
-                        <p class="public-span-lg">区域地图</p>
-
+                        <p class="public-span-lg">学校人数统计</p>
+                        <ul class="school-number-nav">
+                            <li class="school-active">全校</li>
+                            <li>高一</li>
+                            <li>高二</li>
+                            <li>高三</li>
+                        </ul>
+                        <div style="height: 70px;background-color: #0a1942;border: 1px solid #102153;margin-top: 25px;
+                            display: flex;justify-content: center;align-items: center;">
+                            <ul style="display: flex;
+                            justify-content: center;
+                            align-items: center;">
+                                <!-- 模板 -->
+                                <li v-for="(item,index) in SchoolsNumber">
+                                    <div style="width: 100%;">
+                                        <p class="school-nav-p" style="">
+                                            <span>
+                                                {{item.name}}
+                                            </span>
+                                        </p>
+                                        <p class="school-nav-p" style="margin-top: 12px;">
+                                            <span class="fz-14-white">{{item.number}}</span>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <!-- 区域学校 -->
                     <div class="RegionalSchools public-span">
@@ -100,9 +125,10 @@
                     </div>
                 </div>
                 <!-- 区域教师 -->
+
+                <!-- 合并 -->
                 <div class="RegionalTeachers public-span">
-                    <p class="public-span-lg">区域教师</p>
-                    <p class="public-span-sm">区域教师数量</p>
+                    <p class="public-span-lg">学校成绩分析</p>
                     <!-- 图例 -->
                     <div class="legend">
                         <span class="sm-blue"><span class="layui-badge-dot"></span>&nbsp;高中教师</span>
@@ -201,13 +227,15 @@
                                     <span>{{item.grade}}</span>
                                     <span>{{item.subject}}</span>
                                     <span>{{item.DemonstrationClass}}</span>
-                                    <span style="display: inline-block;width: 77px;text-align: center;"><i v-for="(intem,index) in item.StartLevel" class="layui-icon layui-icon-rate-solid" style="color: yellow;"></i></span>
+                                    <span style="display: inline-block;width: 77px;text-align: center;"><i
+                                            v-for="(intem,index) in item.StartLevel"
+                                            class="layui-icon layui-icon-rate-solid" style="color: yellow;"></i></span>
                                 </li>
                             </ul>
                         </div>
                         <!-- vue分页 -->
                         <div id="page" class="page">
-                            <pageination :total="model.total" :size="model.size" :page="model.page" :changge="pageFn" >
+                            <pageination :total="model.total" :size="model.size" :page="model.page" :changge="pageFn">
                                 {{model.page}}
                             </pageination>
                         </div>
@@ -217,7 +245,7 @@
             </div>
             <!-- 区域资源 -->
             <div class="RegionalResources public-span">
-                <p class="public-span-lg">区域资源</p>
+                <p class="public-span-lg">学校资源建设-智慧课堂班</p>
                 <div class="RegionalResources-head">
                     <div class="TotalResources">
                         <div>
@@ -329,7 +357,7 @@
     <!-- 下拉选择框四级联动 -->
     <script src="js/jsAddress.js"></script>
     <!-- 首页js -->
-    <script src="index.js"></script>
+    <script src="schools.js"></script>
 </body>
 
 </html>

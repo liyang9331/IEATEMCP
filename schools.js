@@ -35,6 +35,17 @@ var StarClass = [
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "grade": "七年级", "subject": "数学", "DemonstrationClass": "孔乙己", "StartLevel": new Array(5) },
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "grade": "七年级", "subject": "数学", "DemonstrationClass": "孔乙己", "StartLevel": new Array(5) },
 ]
+var SchoolsNumber = [
+    {"name":"教师总人数","number":250},
+    {"name":"优秀活跃人数","number":250},
+    {"name":"优秀率","number":250},
+    {"name":"学生总人数","number":250},
+    {"name":"班级数","number":250},
+]
+
+
+
+
 var Tdate = function () {
     var myDate = new Date();
     // myDate.getDay(); //获取当前星期X(0-6,0代表星期天)
@@ -58,6 +69,7 @@ var vue = new Vue({
         SchoolsTop10: SchoolsTop10,
         Tdate: Tdate(),
         StarClass: StarClass,
+        SchoolsNumber:SchoolsNumber,
         model: {
             total: 300,//总页数
             size: 5,//每页显示条目个数不传默认10

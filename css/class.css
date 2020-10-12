@@ -1,0 +1,151 @@
+.tbody {
+    padding: 0px 15px 20px 15px;
+    /* padding-right: 0px; */
+    background-color: #03113b;
+  }
+  .header {
+    height: 190px;
+    margin-bottom: 20px;
+    background-image: url("../images/head.png");
+    position: relative;
+  }
+  .head_contil {
+    width: 100%;
+    display: flex;
+    height: 90px;
+    position: absolute;
+    bottom: 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav {
+    width: 940px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .nav li {
+    font-size: 24px;
+    color: #87d9ff;
+  }
+  .nav li:hover{
+      cursor: pointer;
+  }
+  .active{
+      position: relative;
+  }
+  .active::after{
+      display: inline-block;
+      content: "";
+      width: 80px;
+      height: 2px;
+      background-color: #fff;
+      position: absolute;
+      top: 40px;
+      left: 30px;
+  }
+  .section {
+  }
+  .section_top {
+    display: flex;
+  }
+  .section_top_left {
+    width: 450px;
+    margin-right: 20px;
+  }
+  .RegionalMap {
+    background-image: url("../images/RegionalMap.png");
+    height: 350px;
+  }
+  .RegionalSchools {
+    background-image: url("../images/RegionalSchools.png");
+    margin-top: 20px;
+    height: 530px;
+    padding: 60px 20px 0 20px;
+  }
+  
+  .RegionalTeachers {
+    padding: 0 20px 20px 20px;
+    background-image: url("../images/RegionalTeachers.png");
+    width: 910px;
+    margin-right: 20px;
+  }
+  .legend {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .RegionalStudents {
+    width: 450px;
+    background-image: url("../images/RegionalStudents.png");
+  }
+  .PieChart {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .RegionalResources {
+    background-image: url("../images/footer.png");
+    margin-top: 20px;
+    height: 450px;
+    padding: 60px 20px 20px 20px;
+  }
+  .RegionalResources-head {
+    display: flex;
+    justify-content: space-between;
+  }
+  .RegionalResources-head-right {
+    background-color: #0a1942;
+    border: 1px solid #16285f;
+    height: 88px;
+    width: 1558px;
+    overflow: hidden;
+    
+  }
+  .RegionalResources-head-right ul {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    justify-content: space-around;
+    width: 1565px;
+  }
+  .RegionalResources-head-right ul li {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  .RegionalResources-head-right ul li::after{
+      content: "";
+      width: 2px;
+      height: 40px;
+      background-image: url("../images/border-icon.png");
+      position: absolute;
+      top: 5px;
+      left: 185px;
+  }
+  
+  .RegionalResources-bottom{
+      margin-top: 20px;
+  }
+  .RegionalResources-select{
+      width: 123px;
+      height: 28px;
+      border: 1px solid #233b83;
+      background-color: #102153;
+      font-size: 14px;
+      color: #87d9ff;
+  }
+  
+  .TotalResources {
+    width: 258px;
+    height: 88px;
+    background-color: #0a1942;
+    border: 1px solid #16285f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* 1920 缩放 */
+  @media screen and (min-width: 1920px) {
+  }
+  

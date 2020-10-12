@@ -27,21 +27,21 @@
   font-size: 24px;
   color: #87d9ff;
 }
-.nav li:hover{
-    cursor: pointer;
+.nav li:hover {
+  cursor: pointer;
 }
-.active{
-    position: relative;
+.active {
+  position: relative;
 }
-.active::after{
-    display: inline-block;
-    content: "";
-    width: 80px;
-    height: 2px;
-    background-color: #fff;
-    position: absolute;
-    top: 40px;
-    left: 30px;
+.active::after {
+  display: inline-block;
+  content: "";
+  width: 80px;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
+  top: 40px;
+  left: 30px;
 }
 .section {
 }
@@ -51,14 +51,42 @@
 .section_top_left {
   width: 450px;
   margin-right: 20px;
+  background-color: #020c29;
 }
 .RegionalMap {
   background-image: url("../images/RegionalMap.png");
-  height: 350px;
+  height: 280px;
+  padding: 70px 20px 0 20px;
 }
+/* 学校人数统计 */
+.school-number-nav {
+  width: 235px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+.school-number-nav li {
+  font-size: 14px;
+  color: #87d9ff;
+}
+.school-number-nav li:hover {
+  cursor: pointer;
+}
+.school-active {
+  position: relative;
+}
+.school-active::after {
+  display: inline-block;
+  content: "";
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
+  top: 25px;
+  left: 3px;
+}
+
 .RegionalSchools {
-  background-image: url("../images/RegionalSchools.png");
-  margin-top: 20px;
   height: 530px;
   padding: 60px 20px 0 20px;
 }
@@ -98,7 +126,6 @@
   height: 88px;
   width: 1558px;
   overflow: hidden;
-  
 }
 .RegionalResources-head-right ul {
   display: flex;
@@ -113,26 +140,26 @@
   justify-content: center;
   position: relative;
 }
-.RegionalResources-head-right ul li::after{
-    content: "";
-    width: 2px;
-    height: 40px;
-    background-image: url("../images/border-icon.png");
-    position: absolute;
-    top: 5px;
-    left: 185px;
+.RegionalResources-head-right ul li::after {
+  content: "";
+  width: 2px;
+  height: 40px;
+  background-image: url("../images/border-icon.png");
+  position: absolute;
+  top: 5px;
+  left: 185px;
 }
 
-.RegionalResources-bottom{
-    margin-top: 20px;
+.RegionalResources-bottom {
+  margin-top: 20px;
 }
-.RegionalResources-select{
-    width: 123px;
-    height: 28px;
-    border: 1px solid #233b83;
-    background-color: #102153;
-    font-size: 14px;
-    color: #87d9ff;
+.RegionalResources-select {
+  width: 123px;
+  height: 28px;
+  border: 1px solid #233b83;
+  background-color: #102153;
+  font-size: 14px;
+  color: #87d9ff;
 }
 
 .TotalResources {
@@ -147,4 +174,12 @@
 
 /* 1920 缩放 */
 @media screen and (min-width: 1920px) {
+}
+
+.school-nav-p {
+  font-size: 14px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
