@@ -2,21 +2,78 @@
 // 模拟数据
 
 var RegionalResources = [
-    { "name": "备课", "number": "120,308","color": "#00c6ff" },
-    { "name": "试卷", "number": "120,308","color": "#60ff00" },
-    { "name": "微课", "number": "120,308","color": "#ce7f0d" },
-    { "name": "题库", "number": "120,308","color": "#ce4750" },
+    { "name": "备课", "number": "120,308", "color": "#00c6ff" },
+    { "name": "试卷", "number": "120,308", "color": "#60ff00" },
+    { "name": "微课", "number": "120,308", "color": "#ce7f0d" },
+    { "name": "题库", "number": "120,308", "color": "#ce4750" },
 ]
 // 
 // 区域活跃值最高学校TOP10
 var SchoolsTop10 = []
-for(var a=0;a<20;a++){
-    SchoolsTop10.push({ "name": "张大伟", "class": "语文", "uploadSus": 99.9,"miniClass":99,"work":100, "Ranking":"优" })
+for (var a = 0; a < 10; a++) {
+    SchoolsTop10.push({ "name": "张大伟", "SchoolAttribute": "高中", "ActiveValue": "高三", "miniClass": 99, "subject": "语文", "className": "孔乙己", "level": new Array(5) })
 }
 // 高三年级-试题分析 模拟数据
 var StarClass = []
-for(var a=0;a<10;a++){
-    StarClass.push({ "name": "3月考试", "SchoolAttribute": "入学测试","PeopleNumber":200,"grade": "高三", "subject": 110, "FullMark": 10,"WrongMark":10,"difficulty":"困难" })
+for (var a = 0; a < 10; a++) {
+    StarClass.push({ "name": "3月考试", "SchoolAttribute": "入学测试", "PeopleNumber": 200, "grade": "高三", "subject": 110, "FullMark": 10, "WrongMark": 10, "difficulty": "困难" })
+}
+// 图例循环数据
+// 颜色数据，名称数据
+var legend = [1, 2, 3, 4, 5, 6, 7]
+var color = ["#00c6ff", "#60ff00", "#ffa400", "#ff5353", "#ff7cd6", "#9f95ff", "#72dcc9"]
+
+// 雷达图
+var circle = {
+    title: {
+        // text: '基础雷达图'
+    },
+    tooltip: {},
+    // 图表的位置
+    grid: {
+        position: 'center',
+    },
+    legend: {
+        show: false,
+        data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+    },
+    radar: {
+        // shape: 'circle',
+        name: {
+            textStyle: {
+                color: '#fff',
+                backgroundColor: '#999',
+                borderRadius: 3,
+                padding: [3, 5]
+            }
+        },
+        indicator: [
+            { name: '语文', max: 6500 },
+            { name: '数学', max: 16000 },
+            { name: '英语', max: 30000 },
+            { name: '物理', max: 38000 },
+            { name: '化学', max: 52000 },
+            { name: '生物', max: 25000 },
+            { name: '政治', max: 25000 },
+            { name: '历史', max: 25000 },
+            { name: '地理', max: 25000 }
+        ]
+    },
+    series: [{
+        name: '预算 vs 开销（Budget vs spending）',
+        type: 'radar',
+        // areaStyle: {normal: {}},
+        data: [
+            {
+                value: [4300, 10000, 28000, 35000, 50000, 19000],
+                name: '预算分配（Allocated Budget）'
+            },
+            {
+                value: [5000, 14000, 28000, 31000, 42000, 21000],
+                name: '实际开销（Actual Spending）'
+            }
+        ]
+    }]
 }
 
 var SchoolsNumber = [
@@ -36,7 +93,7 @@ var atom = {
     },
     legend: {
         show: false,
-        data: ['推送资源包', '推送资源', '发布作业','上传资源']
+        data: ['推送资源包', '推送资源', '发布作业', '上传资源']
     },
     grid: {
         top: "10px",
@@ -48,7 +105,7 @@ var atom = {
     xAxis: [
         {
             type: 'category',
-            data: ['推送资源包', '推送资源', '发布作业','上传资源'],
+            data: ['推送资源包', '推送资源', '发布作业', '上传资源'],
             axisLine: {
                 lineStyle: {
                     color: "#87d9ff"
@@ -99,7 +156,7 @@ var atom = {
         {
             name: 'data',
             type: 'bar',
-            data: [320, 400, 200,300],
+            data: [320, 400, 200, 300],
             barWidth: 40, //图形宽度
             itemStyle: {
                 normal: {
@@ -445,7 +502,7 @@ var RegionalTeachersLine = {
                     //折线颜色渐变
                     color: "#00c6ff"
                 },
-                label : {show: true}
+                label: { show: true }
             },
             emphasis: {   //鼠标经过时折点小圆圈样式
                 borderColor: 'rgba(0,196,132,0.2)',
@@ -651,7 +708,7 @@ var DoubleExaminationResultsChart = {
                         //折线颜色渐变
                         color: "#3bd3ff"
                     },
-                    label : {show: true}
+                    label: { show: true }
                 },
                 emphasis: {   //鼠标经过时折点小圆圈样式
                     borderColor: 'rgba(0,196,132,0.2)',
@@ -678,7 +735,7 @@ var DoubleExaminationResultsChart = {
                         //折线颜色渐变
                         color: "#7cff2e"
                     },
-                    label : {show: true}
+                    label: { show: true }
                 },
                 emphasis: {   //鼠标经过时折点小圆圈样式
                     borderColor: 'rgba(0,196,132,0.2)',
@@ -690,9 +747,9 @@ var DoubleExaminationResultsChart = {
 }
 
 // 科目成绩及格率和科目成绩优秀率饼图
-    //科目成绩及格率
+//科目成绩及格率
 var PassRateSubjectScore = {
-    color: ["#00c6ff", "#60ff00", "#ffad33","#orange","#ff5353","#ff7cd6","#9f95ff","#72dcc9","#e9a388","#d7f56e"],
+    color: ["#00c6ff", "#60ff00", "#ffad33", "#orange", "#ff5353", "#ff7cd6", "#9f95ff", "#72dcc9", "#e9a388", "#d7f56e"],
     grid: {
         top: "10px",
         left: '0',
@@ -731,7 +788,7 @@ var PassRateSubjectScore = {
             type: 'pie',
             radius: ['20%', '50%'],
             avoidLabelOverlap: false,
-            hoverAnimation:false,
+            hoverAnimation: false,
             label: {
                 normal: {
                     formatter: '{d}%',
@@ -950,29 +1007,14 @@ var RegionalResourcesChart = {
 
 // 基于准备好的dom，初始化echarts实例
 var op1 = echarts.init(document.getElementById('ExcellentRateTeachers'));
-var op2 = echarts.init(document.getElementById('ExaminationOverviewChart'));
-var op3 = echarts.init(document.getElementById('ExaminationResultsChart'));
-var op4 = echarts.init(document.getElementById('DoubleExaminationResultsChart'));
-// 饼图
-var op5 = echarts.init(document.getElementById('PreicEcharts-1'));
-var op6 = echarts.init(document.getElementById('PreicEcharts-2'));
-// 
-var op7 = echarts.init(document.getElementById('SubjectReserve'));
-// 备课量
-var op8 = echarts.init(document.getElementById('task'));
-var op9 = echarts.init(document.getElementById('atom'));
+var op2 = echarts.init(document.getElementById('DoubleExaminationResultsChart'));
+var op3 = echarts.init(document.getElementById('circle'));
 // 使用刚指定的配置项和数据显示图表。
 op1.setOption(RegionalTeachers);
-op2.setOption(RegionalTeachersLine);
-op3.setOption(ExaminationResultsChart);
-op4.setOption(DoubleExaminationResultsChart);
-op5.setOption(PassRateSubjectScore);
-op6.setOption(PassRateSubjectScore);
-op7.setOption(RegionalResourcesChart);
-op8.setOption(task);
-op9.setOption(atom);
+op2.setOption(DoubleExaminationResultsChart);
+op3.setOption(circle);
 
- $("#top10Dom").niceScroll({
+$("#top10Dom").niceScroll({
     cursorcolor: "#54669b", // 改变滚动条颜色，使用16进制颜色值
     cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
     cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0

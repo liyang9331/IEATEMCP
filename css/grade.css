@@ -51,19 +51,18 @@
 .section_top_left {
   width: 450px;
   margin-right: 20px;
-  background-color: #020c29;
 }
 .RegionalMap {
   background-image: url("../images/RegionalMap.png");
   height: 170px;
   padding: 20px 20px 0 20px;
 }
-.ExcellentRateTeachers{
+.ExcellentRateTeachers {
   padding: 0px 20px 0 20px;
-  margin-top: 50px;height: 460px;
+  margin-top: 50px;
+  height: 460px;
+  /* background-color: #020c29; */
 }
-
-
 
 .school-number-nav {
   width: 235px;
@@ -100,10 +99,24 @@
 
 /* 学校成绩分析 */
 .SchoolPerformanceAnalysis {
-  padding: 20px 20px 20px 20px;
-  background-image: url("../images/SchoolPerformanceAnalysis.png");
+  /* padding: 20px 20px 20px 20px; */
   width: 1410px;
 }
+
+.SchoolPerformanceAnalysis > ul {
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+}
+.SchoolPerformanceAnalysis > ul > li {
+  width: 650px;
+  height: 410px;
+  background-image: url("../images/SchoolPerformanceAnalysis.png");
+  background-repeat: no-repeat;
+  background-size: 100% 450px;
+  padding: 20px;
+}
+
 .legend {
   width: 228px;
   display: flex;
@@ -125,7 +138,6 @@
   /* height: 450px; */
   padding: 20px 20px 20px 20px;
 }
-
 
 .RegionalResources-head {
   margin-top: 20px;
@@ -205,66 +217,84 @@
 }
 
 /* 三种字体 */
-.sm-blue{
+.sm-blue {
   font-size: 12px;
   color: #00c6ff;
   margin-right: 20px;
 }
-.sm-green{
+.sm-green {
   font-size: 12px;
   color: #60ff00;
   margin-right: 20px;
 }
-.sm-orgin{
+.sm-orgin {
   font-size: 12px;
   color: #ffa400;
   margin-right: 20px;
 }
-.public-span{
+.public-span {
   font-size: 20px;
   color: #87d9ff;
   position: relative;
 }
-.public-span-lg{
+.public-span-lg {
   text-align: center;
   position: relative;
   width: 100%;
 }
-.public-span-sm{
+.public-span-sm {
   text-align: center;
-      font-size: 18px;
-      color: #87d9ff;
-      margin-top: 60px;
+  font-size: 18px;
+  color: #87d9ff;
+  margin-top: 60px;
 }
-.fz-14-blue{
+.fz-14-blue {
   font-size: 14px;
   color: #87d9ff;
 }
-.fz-14-white{
+.fz-14-white {
   font-size: 14px;
   color: #fff;
 }
 
 /* 修改layui默认下三角的样式 */
-.layui-icon-triangle-d{
+.layui-icon-triangle-d {
   color: #00c6ff !important;
   cursor: pointer;
 }
-.NewLegend{
+.NewLegend {
+    margin-top: 15px;
   display: flex;
   justify-content: flex-end;
 }
-.PieChart .sm-green,.PieChart .sm-orgin{
+.PieChart .sm-green,
+.PieChart .sm-orgin {
   margin-right: 5px !important;
 }
-.PieChart{
+.PieChart {
   display: flex;
 }
-.page{
+.page {
   width: 215px;
-    height: 25px;
-    position: absolute;
-    bottom: -12px;
-    left: none;
-    right: 0px;
+  height: 25px;
+}
+
+/* 列表选择按钮 */
+.seclect-btn {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+/* 推荐按钮 */
+.Recommend {
+  width: 138px;
+  height: 28px;
+  border: 2px solid #7cc8ed;
+  background-color: #020c29;
+  color: #87d9ff;
+  font-size: 14px;
+  border-radius: 15px;
+  cursor: pointer;
 }

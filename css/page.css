@@ -48,10 +48,3 @@
     color: #6c6c6c !important;;
     cursor: default;
 }
-.page{
-    width: 215px;
-    height: 25px;
-    position: absolute;
-    bottom: -223px;
-    left: 240px;
-}

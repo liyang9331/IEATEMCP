@@ -12,10 +12,11 @@
 <link rel="stylesheet" href="layui/css/layui.css">
 <!-- 轮播图 -->
 <link rel="stylesheet" href="css/swiper_3.4.2_css.css">
-<!-- 首页css样式 -->
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/public.css">
+<!-- 分页样式 -->
 <link rel="stylesheet" href="css/page.css">
+<!-- 首页css样式 -->
+<link rel="stylesheet" href="css/grade.css">
+
 
 <body>
     <!-- tbody dom内容主体 -->
@@ -24,7 +25,7 @@
             <div class="head_contil">
                 <p style="font-size: 14px;color: #54669b;">欢迎您登录山东省教育资源数据管理平台!</br>{{Tdate}}</p>
                 <ul class="nav">
-                    <li  onclick="tigert('index.html')">区域管理统计</li>
+                    <li onclick="tigert('index.html')">区域管理统计</li>
                     <li onclick="tigert('schools.html')">学校管理统计</li>
                     <li class="active" onclick="tigert('grade.html')">年级管理统计</li>
                     <li onclick="tigert('class.html')">班级管理统计</li>
@@ -41,269 +42,288 @@
         <div class="section">
             <div class="section_top">
                 <div class="section_top_left">
-                    <!-- 区域地图 -->
-                    <div class="RegionalMap public-span">
-                        <p class="public-span-lg">区域地图</p>
-
-                    </div>
-                    <!-- 区域学校 -->
-                    <div class="RegionalSchools public-span">
-                        <p class="public-span-lg">区域学校</p>
-                        <!-- 四级联动 -->
-                        <p>
-                            <select id="area" class="RegionalResources-select" style="width: 78px;"></select>
-                            <select id="cmbProvince" class="RegionalResources-select" style="width: 78px;"></select>
-                            <select id="cmbCity" class="RegionalResources-select" style="width: 78px;"></select>
-                            <select id="cmbArea" class="RegionalResources-select"></select>
-                        </p>
-                        <p class="public-span-sm">区域学校数量</p>
-                        <!-- 图例 -->
-                        <div class="legend">
-                            <span class="sm-blue"><span class="layui-badge-dot"></span>&nbsp;高中家数</span>
-                            <span class="sm-green"><span class="layui-badge-dot layui-bg-green"></span>&nbsp;初中家数</span>
-                            <span class="sm-orgin"><span
-                                    class="layui-badge-dot layui-bg-orange"></span>&nbsp;小学家数</span>
-                        </div>
-                        <!-- 柱状图容器 -->
-                        <div id="RegionalSchoolsDom" style="width: 405px;height: 165px;">
-                            <!-- 柱状图 -->
-                            <div id="RegionalSchoolsChart" style="width: 1000px;height: 140px;"></div>
-                        </div>
-                        <!--  -->
-                        <section style="margin-top:20px">
-                            <p class="public-span-sm" style="margin-top: 0px;">区域活跃值最高学校TOP10</p>
-                            <div style="font-size:14px;color:#6073aa;background-color: #102153;
-                        height: 30px;
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: center;margin-top: 10px;">
-                                <span>学校名称</span>
-                                <span>学校属性</span>
-                                <span>活跃值</span>
-                                <span>排名</span>
-                            </div>
-                            <div>
-                                <ul style="background-color: #020c29;height: 135px;" id="SchoolsTop10">
-                                    <li style="height: 30px;border-bottom: 1px solid #102153;display: flex;
-                                justify-content: space-around;
-                                align-items: center;font-size:14px;color:#87d9ff;"
-                                        v-for="(item,index) in SchoolsTop10">
-                                        <span>{{item.SchoolName}}</span>
-                                        <span>{{item.SchoolAttribute}}</span>
-                                        <span>{{item.ActiveValue}}</span>
-                                        <span>{{item.Ranking}}</span>
+                    <div style="background-color: #020c29;">
+                        <!-- 区域地图 -->
+                        <div class="RegionalMap public-span">
+                            <p class="public-span-lg">年级人数统计</p>
+                            <ul class="school-number-nav" style="margin: 0 auto;    margin-top: 50px;">
+                                <li class="school-active">全校</li>
+                                <li>高一</li>
+                                <li>高二</li>
+                                <li>高三</li>
+                            </ul>
+                            <div style="height: 70px;background-color: #0a1942;border: 1px solid #102153;margin-top: 25px;
+                            display: flex;align-items: center;">
+                                <ul style="    width: 100%;
+                            display: flex;
+                            justify-content: space-evenly;">
+                                    <!-- 模板 -->
+                                    <li v-for="(item,index) in SchoolsNumber">
+                                        <div style="width: 100%;">
+                                            <p class="school-nav-p" style="">
+                                                <span>
+                                                    {{item.name}}
+                                                </span>
+                                            </p>
+                                            <p class="school-nav-p" style="margin-top: 12px;">
+                                                <span class="fz-14-white">{{item.number}}</span>
+                                            </p>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
-
-                        </section>
-                    </div>
-                </div>
-                <!-- 区域教师 -->
-                <div class="RegionalTeachers public-span">
-                    <p class="public-span-lg">区域教师</p>
-                    <p class="public-span-sm">区域教师数量</p>
-                    <!-- 图例 -->
-                    <div class="legend">
-                        <span class="sm-blue"><span class="layui-badge-dot"></span>&nbsp;高中教师</span>
-                        <span class="sm-green"><span class="layui-badge-dot layui-bg-green"></span>&nbsp;初中教师</span>
-                        <span class="sm-orgin"><span class="layui-badge-dot layui-bg-orange"></span>&nbsp;小学教师</span>
+                        </div>
+                        <!-- 教师优秀率折线图 -->
+                        <div class="ExcellentRateTeachers">
+                            <p class="public-span-sm">教师优秀率&人数</p>
+                            <p class="notes">数据来源：到课率&课程推送&作业布置</p>
+                            <!-- 折线图 -->
+                            <div id="ExcellentRateTeachers" style="width: 410px;height: 380px;"></div>
+                        </div>
                     </div>
 
-                    <!-- 区域教师数量-柱状图滚动条容器 -->
-                    <div id="RegionalTeachersDom" style="height: 360px;width: 900px;margin-top: 5px;">
-                        <!-- 柱状图容器 -->
-                        <div id="RegionalTeachersChart" style="height: 340px;width: 1500px;"></div>
-                    </div>
-
-                    <p class="public-span-sm">区域日活跃老师总人数</p>
-                    <div class="legend">
-                        <span class="sm-blue"><span class="layui-badge-dot"></span>&nbsp;区域日活跃老师总人数</span>
-                    </div>
-                    <!-- 区域日活跃老师总人数-折线图滚动条容器 -->
-                    <div id="RegionalTeachersLineDom" style="height: 340px;width: 900px;margin-top: 25px;">
-                        <!-- 折线图容器 -->
-                        <div id="RegionalTeachersLine" style="height: 330px;width: 1500px;"></div>
-                    </div>
-                </div>
-                <!-- 区域学生 -->
-                <div class="RegionalStudents public-span">
-                    <p class="public-span-lg">区域学生</p>
-                    <p class="public-span-sm">区域学生总人数</p>
-                    <!-- 图例 -->
-                    <div class="legend">
-                        <span class="sm-blue"><span class="layui-badge-dot"></span>&nbsp;高中学生总人数</span>
-                        <span class="sm-green"><span class="layui-badge-dot layui-bg-green"></span>&nbsp;初中学生总人数</span>
-                        <span class="sm-orgin"><span class="layui-badge-dot layui-bg-orange"></span>&nbsp;小学学生总人数</span>
-                    </div>
-
-                    <!-- 区域学生总人数-柱状图滚动条容器 -->
-                    <div id="RegionalStudentDom" style="height: 167px;width: 413px;margin-top: 5px;margin: 0 auto;">
-                        <!-- 柱状图容器 -->
-                        <div id="RegionalStudentChart" style="height: 160px;width: 1500px;"></div>
-                    </div>
-
-                    <!-- 饼图 -->
-                    <div class="PieChart">
-                        <div class="PieChart-left">
-                            <p class="public-span-sm" style="margin-bottom: 10px;">区域年级学生总人数</p>
+                    <div
+                        style="padding: 20px 20px 0 20px;height:230px;margin-top: 20px;background-image: url(images/grade-bgc.png);">
+                        <p class="public-span-lg" style="font-size: 20px;color: #87d9ff;">
+                            <select name="" id="" class="RegionalTeacher-select" style="width: 78px;height: 28px;">
+                                <option value="">高三年级</option>
+                            </select>各科成绩走向
+                        </p>
+                        <div style="margin-top: 10px;display: flex;
+                        justify-content: flex-end;">
                             <!-- 图例 -->
                             <div class="legend">
-                                <span class="sm-blue" style="margin-right: 0;"><span
-                                        class="layui-badge-dot"></span>&nbsp;高中</span>&nbsp;
-                                <span class="sm-green" style="margin-right: 0;"><span
-                                        class="layui-badge-dot layui-bg-green"></span>&nbsp;七八九年级</span>&nbsp;
-                                <span class="sm-orgin" style="margin-right: 0;"><span
-                                        class="layui-badge-dot layui-bg-orange"></span>&nbsp;一至六年级</span>
+                                <span class="sm-blue">
+                                    <span class="layui-badge-dot layui-bg-blue"></span>
+                                    &nbsp;上学期
+                                </span>
+                                <span class="sm-green">
+                                    <span class="layui-badge-dot layui-bg-green"></span>
+                                    &nbsp;下学期
+                                </span>
                             </div>
-                            <!-- 饼图 -->
-                            <!-- 柱状图容器 -->
-                            <div id="StudentPieChartChart-left" style="height: 125px;width: 198px;"></div>
                         </div>
-                        <div class="PieChart-right">
-                            <p class="public-span-sm" style="margin-bottom: 10px;">区域年级学生优秀人数</p>
-                            <!-- 图例 -->
-                            <div class="legend">
-                                <span class="sm-blue" style="margin-right: 0;"><span
-                                        class="layui-badge-dot"></span>&nbsp;高中</span>&nbsp;
-                                <span class="sm-green" style="margin-right: 0;"><span
-                                        class="layui-badge-dot layui-bg-green"></span>&nbsp;七八九年级</span>&nbsp;
-                                <span class="sm-orgin" style="margin-right: 0;"><span
-                                        class="layui-badge-dot layui-bg-orange"></span>&nbsp;一至六年级</span>
-                            </div>
-                            <!-- 饼图 -->
-                            <!-- 柱状图容器 -->
-                            <div id="StudentPieChartChart-right" style="height: 125px;width: 198px;"></div>
-                        </div>
+                        <!-- 双折线图 -->
+                        <div class="" id="DoubleExaminationResultsChart" style="height: 150px;margin-top: 10px;"></div>
                     </div>
-                    <!-- 星选示范课 -->
-                    <section style="margin-top:20px;position: relative;">
-                        <p class="public-span-sm" style="margin-top: 0px;">星选示范课</p>
-                        <div style="font-size:14px;color:#6073aa;background-color: #102153;
-                    height: 30px;
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;margin-top: 10px;">
-                            <span>学校名称</span>
-                            <span>学校属性</span>
-                            <span>年级</span>
-                            <span>学科</span>
-                            <span>示范课名称</span>
-                            <span>推荐星级</span>
-                        </div>
-                        <div>
-                            <ul style="background-color: #020c29;height: 135px;">
-                                <li style="height: 30px;border-bottom: 1px solid #102153;display: flex;
+                </div>
+                <!-- 右侧内容 -->
+                <div class="SchoolPerformanceAnalysis public-span">
+                    <ul>
+                        <li>
+                            <section style="margin-top:20px;position: relative;">
+                                <p class="public-span-lg"> <select name="" id="" class="RegionalTeacher-select">
+                                        <option value="">高三年级</option>
+                                    </select>年级优秀示范课
+                                </p>
+                                <div style="font-size:14px;color:#6073aa;background-color: #102153;
+                            height: 30px;
+                            display: flex;
                             justify-content: space-around;
-                            align-items: center;font-size:14px;color:#87d9ff;" v-for="(item,index) in StarClass">
-                                    <span>{{item.SchoolName}}</span>
-                                    <span>{{item.SchoolAttribute}}</span>
-                                    <span>{{item.grade}}</span>
-                                    <span>{{item.subject}}</span>
-                                    <span>{{item.DemonstrationClass}}</span>
-                                    <span style="display: inline-block;width: 77px;text-align: center;"><i v-for="(intem,index) in item.StartLevel" class="layui-icon layui-icon-rate-solid" style="color: yellow;"></i></span>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- vue分页 -->
-                        <div id="page" class="page">
-                            <pageination :total="model.total" :size="model.size" :page="model.page" :changge="pageFn" >
-                                {{model.page}}
-                            </pageination>
-                        </div>
+                            align-items: center;margin-top: 10px;">
+                                    <span><span class="seclect-btn"></span>&nbsp;全选</span>
+                                    <span>学校名称</span>
+                                    <span>学校属性</span>
+                                    <span>年级</span>
+                                    <span>学科</span>
+                                    <span>示范课名称</span>
+                                    <span>推荐星级</span>
+                                </div>
+                                <div style="height: 313px;">
+                                    <ul style="background-color: #020c29;height: 135px;" id="SchoolsTop10">
+                                        <li style="height: 30px;border-bottom: 1px solid #102153;display: flex;
+                                    justify-content: space-around;
+                                    align-items: center;font-size:14px;color:#87d9ff;"
+                                            v-for="(item,index) in SchoolsTop10">
+                                            <span class="seclect-btn"></span>
+                                            <span>{{item.name}}</span>
+                                            <span>{{item.SchoolAttribute}}</span>
+                                            <span>{{item.ActiveValue}}</span>
+                                            <span>{{item.miniClass}}</span>
+                                            <span>{{item.subject}}</span>
+                                            <span>{{item.className}}</span>
+                                            <span>
+                                                <span v-for="(item,index) in item.level">
+                                                    <i class="layui-icon layui-icon-rate-solid"
+                                                        style="color: yellow;"></i>
+                                                </span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div style="    display: flex;
+                                justify-content: space-between;">
+                                    <button class="Recommend">推荐到区域管理</button>
+                                    <!-- vue分页 -->
+                                    <div id="page" class="page">
+                                        <pageination :total="model.total" :size="model.size" :page="model.page"
+                                            :changge="pageFn">
+                                            {{model.page}}
+                                        </pageination>
+                                    </div>
+                                </div>
 
-                    </section>
+                            </section>
+                        </li>
+                        <li>
+                            <p class="public-span-lg">各班成绩走向</p>
+                            <ul class="school-number-nav" style="margin: 0 auto;margin-top: 20px;">
+                                <li class="school-active">高三</li>
+                                <li>高二</li>
+                                <li>高一</li>
+                            </ul>
+                            <div class="NewLegend">
+                                <span class="sm-blue" style="margin-right: 20px;" v-for="(item,index) in legend">
+                                    <span class="layui-badge-dot" :style="{'background-color':color[item-1]}"></span>
+                                    &nbsp;{{item}}班
+                                </span>
+    
+                            </div>
+                            <div id="circle" style="width: 330px;height: 330px;float: left;"></div>
+                            <div style="width:155px;height: 300px;float: left;background-color: #0a1942;margin-left: 155px;
+                            margin-top: 15px;border: 1px solid #15265c;">
+                                <ul>
+                                    <li>
+                                        <p>年级平均分</p>
+                                        <p>245455</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li style="margin-top: 25px;"></li>
+                        <li style="margin-top: 25px;"></li>
+                    </ul>
                 </div>
             </div>
             <!-- 区域资源 -->
             <div class="RegionalResources public-span">
-                <p class="public-span-lg">区域资源</p>
+                <p class="public-span-lg"> <select name="" id="" class="RegionalTeacher-select">
+                        <option value="">高三年级</option>
+                    </select>学校成绩分析
+                </p>
                 <div class="RegionalResources-head">
-                    <div class="TotalResources">
-                        <div>
-                            <p style="font-size: 18px;color: #87d9ff;">资源库资源总量</p>
-                            <p style="font-size: 30px;color: #ffffff;margin-top: 10px;">6,620,308</p>
-                        </div>
-                    </div>
-                    <div class="RegionalResources-head-right">
-                        <ul>
-                            <!-- 模板 -->
-                            <li v-for="(item,index) in RegionalResources">
-                                <div style="width: 100%;">
-                                    <p style="font-size: 14px;font-size: 14px;
+                    <ul>
+                        <li>
+                            <p style="display: flex;align-items: center;">
+                                <span style="font-size: 18px;
+                                    color: rgb(135, 217, 255);
+                                    text-align: center;
+                                    width: 190px;">资源库资源总量</span>
+                                <span style="font-size: 30px;color: #ffffff;">6,620,308</span>
+                            </p>
+                        </li>
+                        <!-- 模板 -->
+                        <li v-for="(item,index) in RegionalResources">
+                            <div style="width: 100%;">
+                                <p style="font-size: 14px;font-size: 14px;
                                     display: flex;
                                     justify-content: space-around;
                                     align-items: center;">
-                                        <span>
-                                            <span :style="{'color':item.color}">{{item.name}}</span>
-                                            <span class="fz-14-blue">总量</span>
-                                        </span>
-                                        <span class="fz-14-white">
-                                            {{item.number}}
-                                        </span>
-                                    </p>
-                                    <p style="margin-top: 15px;font-size: 14px;
-                                    display: flex;
-                                    justify-content: space-around;
-                                    align-items: center;">
-                                        <span class="fz-14-blue">近30日新增</span>
-                                        <span class="fz-14-white">{{item.MonthlyAddition}}</span>
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                    <span>
+                                        <span :style="{'color':item.color}">{{item.name}}</span>
+                                        <span class="fz-14-blue">资源</span>
+                                    </span>
+                                    <span class="fz-14-white">
+                                        {{item.number}}
+                                    </span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <!-- 柱状图 -->
                 <div class="RegionalResources-bottom">
-                    <div style="display: flex;justify-content: space-between;">
-                        <div>
-                            <!-- 下拉选择框 -->
-                            <p>
-                                <select name="" id="" class="RegionalResources-select">
-                                    <option value="">学段选择</option>
-                                </select>
-                                <select name="" id="" class="RegionalResources-select">
-                                    <option value="">区域选择</option>
-                                </select>
-                            </p>
+                    <!-- 高三各科目备客量 -->
+                    <div style="">
+                        <p class="public-span-sm" style="margin-top: 0;">高三年级-考试概况</p>
+                        <div class="NewLegend">
+                            <span class="sm-blue" style="margin-right: 20px;">
+                                <span class="layui-badge-dot" style="background-color: #00c6ff;"></span>
+                                &nbsp;课件
+                            </span>
+                            <span class="sm-blue" style="margin-right: 20px;">
+                                <span class="layui-badge-dot" style="background-color: #60ff00;"></span>
+                                &nbsp;教案
+                            </span>
+                            <span class="sm-blue" style="margin-right: 20px;">
+                                <span class="layui-badge-dot" style="background-color: #ffa400;"></span>
+                                &nbsp;学案
+                            </span>
+                            <span class="sm-blue" style="margin-right: 20px;">
+                                <span class="layui-badge-dot" style="background-color: #ff5353;"></span>
+                                &nbsp;试卷
+                            </span>
+                            <span class="sm-blue" style="margin-right: 20px;">
+                                <span class="layui-badge-dot" style="background-color: #ff7cd6;"></span>
+                                &nbsp;微课
+                            </span>
+                            <span class="sm-blue" style="margin-right: 20px;">
+                                <span class="layui-badge-dot" style="background-color: #9f95ff;"></span>
+                                &nbsp;素材
+                            </span>
+                            <span class="sm-blue" style="margin-right: 0;">
+                                <span class="layui-badge-dot" style="background-color: #72dcc9;"></span>
+                                &nbsp;题库
+                            </span>
                         </div>
-                        <div class="">
-                            <!-- 图例 -->
-                            <div class="legend">
-                                <span class="sm-blue" style="margin-right: 20px;">
-                                    <span class="layui-badge-dot" style="background-color: #00c6ff;"></span>
-                                    &nbsp;课件
-                                </span>
-                                <span class="sm-blue" style="margin-right: 20px;">
-                                    <span class="layui-badge-dot" style="background-color: #60ff00;"></span>
-                                    &nbsp;教案
-                                </span>
-                                <span class="sm-blue" style="margin-right: 20px;">
-                                    <span class="layui-badge-dot" style="background-color: #ffa400;"></span>
-                                    &nbsp;学案
-                                </span>
-                                <span class="sm-blue" style="margin-right: 20px;">
-                                    <span class="layui-badge-dot" style="background-color: #ff5353;"></span>
-                                    &nbsp;试卷
-                                </span>
-                                <span class="sm-blue" style="margin-right: 20px;">
-                                    <span class="layui-badge-dot" style="background-color: #ff7cd6;"></span>
-                                    &nbsp;微课
-                                </span>
-                                <span class="sm-blue" style="margin-right: 20px;">
-                                    <span class="layui-badge-dot" style="background-color: #9f95ff;"></span>
-                                    &nbsp;素材
-                                </span>
-                                <span class="sm-blue" style="margin-right: 0;">
-                                    <span class="layui-badge-dot" style="background-color: #72dcc9;"></span>
-                                    &nbsp;题库
-                                </span>
-                            </div>
-                        </div>
+                        <!-- 折线图 -->
+                        <!-- 柱状图容器 -->
+                        <div id="SubjectReserve" style="width: 100%;height: 120px;"></div>
                     </div>
-                    <!-- 柱状图容器 -->
-                    <div id="RegionalResourcesChart" style="width: 100%;height: 295px;"></div>
+                    <!-- 底部栏 -->
+                    <div style="width: 100%;margin-top: 25px;height: 215px;">
+                        <ul style="display: flex;justify-content: space-between;">
+                            <li style="width: 410px;">
+                                <p class="public-span-sm" style="margin-top: 0;">高三总备课量</p>
+                                <!-- 柱状图 -->
+                                <div class="" id="atom" style="height: 150px;margin-top: 10px;">
+                                </div>
+                            </li>
+                            <li style="width: 416px;">
+                                <p class="public-span-lg"> <select name="" id="" class="RegionalTeacher-select"
+                                        style="width: 78px;height: 28px;">
+                                        <option value="">语文</option>
+                                    </select>高三在线作业
+                                </p>
+                                <!-- 柱状图 -->
+                                <div class="" id="task" style="height: 150px;margin-top: 10px;">
+                                </div>
+                            </li>
+                            <li style="width: 905px;height: 215px;">
+                                <p class="public-span-sm" style="margin-top: 0;">高三年级-考试成绩优秀率</p>
+                                <section style="margin-top:-5px">
+                                    <div style="font-size:14px;color:#6073aa;background-color: #102153;
+                                height: 30px;
+                                display: flex;
+                                justify-content: space-around;
+                                align-items: center;margin-top: 10px;">
+                                        <span>教师姓名</span>
+                                        <span>任教学科</span>
+                                        <span>个人上传资源数</span>
+                                        <span>个人微课数</span>
+                                        <span>个人作业数</span>
+                                        <span>评价指数</span>
+                                    </div>
+                                    <div id="top10Dom" class="height:130px">
+                                        <ul style="background-color: #020c29;height: 135px;" id="SchoolsTop10">
+                                            <li style="height: 30px;border-bottom: 1px solid #102153;display: flex;
+                                        justify-content: space-around;
+                                        align-items: center;font-size:14px;color:#87d9ff;"
+                                                v-for="(item,index) in SchoolsTop10">
+                                                <span>{{item.name}}</span>
+                                                <span>{{item.class}}</span>
+                                                <span>{{item.uploadSus}}</span>
+                                                <span>{{item.miniClass}}</span>
+                                                <span>{{item.work}}</span>
+                                                <span>{{item.Ranking}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </section>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -327,9 +347,9 @@
     <!-- 百度数据可视化 -->
     <script src="js/echarts.min.js"></script>
     <!-- 下拉选择框四级联动 -->
-    <script src="js/jsAddress.js"></script>
+    <!-- <script src="js/jsAddress.js"></script> -->
     <!-- 首页js -->
-    <script src="index.js"></script>
+    <script src="grade.js"></script>
 </body>
 
 </html>
