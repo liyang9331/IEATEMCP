@@ -135,7 +135,6 @@
 .RegionalResources {
   background-image: url("../images/footer.png");
   margin-top: 20px;
-  /* height: 450px; */
   padding: 20px 20px 20px 20px;
 }
 
@@ -263,7 +262,7 @@
   cursor: pointer;
 }
 .NewLegend {
-    margin-top: 15px;
+  margin-top: 15px;
   display: flex;
   justify-content: flex-end;
 }
@@ -297,4 +296,114 @@
   font-size: 14px;
   border-radius: 15px;
   cursor: pointer;
+}
+/* 雷达图面板 */
+.circlePanel {
+  display: flex;
+  flex-flow: column;
+}
+.circlePanel li {
+  height: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circlePanel li p:nth-child(1) {
+  color: #87d9ff;
+  font-size: 14px;
+}
+.circlePanel li p:nth-child(2) {
+  color: #fff;
+  font-size: 14px;
+  margin-top: 10px;
+}
+/*  */
+.NewCirclePanel{
+  display: flex;
+  flex-flow: column;
+  width: 85px;
+  height: 150px;
+  font-size: 14px;
+}
+.NewCirclePanel li{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+/*  */
+.ListSubjects {
+  width: 155px;
+  height: 390px;
+  padding: 20px;
+  border: 2px solid #87d9ff;
+  background-color: #020c29;
+  position: absolute;
+  right: 0px;
+  border-radius: 5px;
+  top: 50px;
+  right: -126px;
+}
+.ListSubjects div {
+  height: 390px;
+  background-color: #09173e;
+}
+.ListSubjects ul {
+  background-color: #09173e;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.ListSubjects ul li {
+  border: 1px solid #213160;
+  width: 75px;
+  height: 29px;
+  text-align: center;
+  color: #7cc8ed;
+  font-size: 12px;
+  line-height: 31px;
+}
+.ListSubjects ul li:nth-child(1) {
+  width: 153px;
+  height: 28px;
+}
+.NewClassList {
+  margin-top: 15px;
+}
+.NewClassList ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.NewClassList ul li {
+  width: 78px;
+  height: 26.5px;
+  border: 1px solid #213160;
+  text-align: center;
+  font-size: 14px;
+  color: #7cc8ed;
+  line-height: 30px;
+  /* background-color: #fff; */
+}
+
+.PleaseCheck {
+  color: #fff;
+  cursor: pointer;
+}
+.PleaseCheck:hover {
+  color: #7cc8ed;
+}
+.teacherBK {
+  width: 325px;
+  height: 175px;
+  padding: 20px;
+  border: 2px solid #87d9ff;
+  border-radius: 5px;
+  background-color: #020c29;
+  position: absolute;
+  right: -282px;
+  top: 43px;
+  z-index: 10;
+  /* display: none; */
 }

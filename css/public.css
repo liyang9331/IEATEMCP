@@ -58,3 +58,12 @@
   text-align: right;
   margin-top: 12px;
 }
+
+/* 公共按钮样式 */
+.btn{
+  border: 1px solid #233b83;
+  background-color: #102153;
+  font-size: 14px;
+  text-align: center;
+  color: #87d9ff;
+}

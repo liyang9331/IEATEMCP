@@ -947,30 +947,20 @@ var RegionalResourcesChart = {
         }
     ]
 }
-
-// 基于准备好的dom，初始化echarts实例
-var op1 = echarts.init(document.getElementById('ExcellentRateTeachers'));
-var op2 = echarts.init(document.getElementById('ExaminationOverviewChart'));
-var op3 = echarts.init(document.getElementById('ExaminationResultsChart'));
-var op4 = echarts.init(document.getElementById('DoubleExaminationResultsChart'));
-// 饼图
-var op5 = echarts.init(document.getElementById('PreicEcharts-1'));
-var op6 = echarts.init(document.getElementById('PreicEcharts-2'));
-// 
-var op7 = echarts.init(document.getElementById('SubjectReserve'));
-// 备课量
-var op8 = echarts.init(document.getElementById('task'));
-var op9 = echarts.init(document.getElementById('atom'));
-// 使用刚指定的配置项和数据显示图表。
-op1.setOption(RegionalTeachers);
-op2.setOption(RegionalTeachersLine);
-op3.setOption(ExaminationResultsChart);
-op4.setOption(DoubleExaminationResultsChart);
-op5.setOption(PassRateSubjectScore);
-op6.setOption(PassRateSubjectScore);
-op7.setOption(RegionalResourcesChart);
-op8.setOption(task);
-op9.setOption(atom);
+// 图形渲染
+ERdata(
+    [
+        { "id": "ExcellentRateTeachers", "data": RegionalTeachers},
+        { "id": "ExaminationOverviewChart", "data": RegionalTeachersLine},
+        { "id": "ExaminationResultsChart", "data": ExaminationResultsChart },
+        { "id": "DoubleExaminationResultsChart", "data": DoubleExaminationResultsChart},
+        { "id": "PreicEcharts-1", "data": PassRateSubjectScore},
+        { "id": "PreicEcharts-2", "data": PassRateSubjectScore},
+        { "id": "SubjectReserve", "data": RegionalResourcesChart},
+        { "id": "task", "data": task},
+        { "id": "atom", "data": atom},
+    ]
+)
 
  $("#top10Dom").niceScroll({
     cursorcolor: "#54669b", // 改变滚动条颜色，使用16进制颜色值

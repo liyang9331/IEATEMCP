@@ -1,7 +1,7 @@
 
 // 模拟数据
 
-var RegionalResources = [
+let RegionalResources = [
     { "name": "课件", "number": "120,308", "MonthlyAddition": "1,456", "color": "#00c6ff" },
     { "name": "教案", "number": "120,308", "MonthlyAddition": "1,456", "color": "#60ff00" },
     { "name": "学案", "number": "120,308", "MonthlyAddition": "1,456", "color": "#ce7f0d" },
@@ -11,7 +11,7 @@ var RegionalResources = [
     { "name": "题库", "number": "120,308", "MonthlyAddition": "1,456", "color": "#264d66" },
 ]
 // 区域活跃值最高学校TOP10
-var SchoolsTop10 = [
+let SchoolsTop10 = [
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "ActiveValue": 99.9, "Ranking": 1 },
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "ActiveValue": 98.9, "Ranking": 2 },
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "ActiveValue": 97.9, "Ranking": 3 },
@@ -23,7 +23,7 @@ var SchoolsTop10 = [
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "ActiveValue": 92.9, "Ranking": 9 },
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "ActiveValue": 91.9, "Ranking": 10 },
 ]
-var StarClass = [
+let StarClass = [
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "grade": "七年级", "subject": "数学", "DemonstrationClass": "孔乙己", "StartLevel": new Array(1) },
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "grade": "七年级", "subject": "数学", "DemonstrationClass": "孔乙己", "StartLevel": new Array(2) },
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "grade": "七年级", "subject": "数学", "DemonstrationClass": "孔乙己", "StartLevel": new Array(3) },
@@ -35,10 +35,10 @@ var StarClass = [
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "grade": "七年级", "subject": "数学", "DemonstrationClass": "孔乙己", "StartLevel": new Array(5) },
     { "SchoolName": "清华附属中学", "SchoolAttribute": "高中", "grade": "七年级", "subject": "数学", "DemonstrationClass": "孔乙己", "StartLevel": new Array(5) },
 ]
-var Tdate = function () {
-    var myDate = new Date();
+let Tdate = function () {
+    let myDate = new Date();
     // myDate.getDay(); //获取当前星期X(0-6,0代表星期天)
-    var Day = function () {
+    let Day = function () {
         switch (myDate.getDay()) {
             case 0: return "星期日"; break;
             case 1: return "星期一"; break;
@@ -51,7 +51,7 @@ var Tdate = function () {
     }
     return myDate.getFullYear() + "年" + myDate.getMonth() + "月" + myDate.getDate() + "日" + "  " + Day();
 }
-var vue = new Vue({
+let vue = new Vue({
     el: "#app",
     data: {
         RegionalResources: RegionalResources,
@@ -83,7 +83,7 @@ var vue = new Vue({
         }).then(function (response) {
             console.log(response)
             //json格式化
-            var obj = str.parseJSON(response.data);
+            let obj = str.parseJSON(response.data);
         })
             .catch(function (error) {
                 console.log(error)
@@ -103,7 +103,7 @@ var vue = new Vue({
 addressInit('area', 'cmbProvince', 'cmbCity', 'cmbArea', '西北地区', '北京', '市辖区', '东城区');
 
 // 学校学校数量
-var RegionalSchools = {
+let RegionalSchools = {
     tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -220,7 +220,7 @@ var RegionalSchools = {
     ]
 };
 // 学校教师数量
-var RegionalTeachers = {
+let RegionalTeachers = {
     tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -338,7 +338,7 @@ var RegionalTeachers = {
 };
 
 // 日活跃老师总人数
-var RegionalTeachersLine = {
+let RegionalTeachersLine = {
     // tooltip: {
     //     trigger: 'axis',
     //     axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -506,7 +506,7 @@ var RegionalTeachersLine = {
 };
 
 // 区域学生总人数
-var RegionalStudent = {
+let RegionalStudent = {
     tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -625,7 +625,7 @@ var RegionalStudent = {
 
 // 饼图
 // 区域年级学生总人数
-var StudentPieChart = {
+let StudentPieChart = {
     color: ["#38d2ff", "#72ff1d", "#ffad33"],
     grid: {
         top: "10px",
@@ -697,7 +697,7 @@ var StudentPieChart = {
                             fontSize: 10    //文字的字体大小
                         },
                         formatter: function (p) {   //指示线对应文字
-                            var data = p.data;
+                            let data = p.data;
                             return data;
                         }
                     },
@@ -712,7 +712,7 @@ var StudentPieChart = {
     ]
 }
 // 区域年级学生优秀人数
-var ExcellentStudentPieChart = {
+let ExcellentStudentPieChart = {
     color: ["#38d2ff", "#72ff1d", "#ffad33"],
     grid: {
         top: "10px",
@@ -784,7 +784,7 @@ var ExcellentStudentPieChart = {
                             fontSize: 10    //文字的字体大小
                         },
                         formatter: function (p) {   //指示线对应文字
-                            var data = p.data;
+                            let data = p.data;
                             return data;
                         }
                     },
@@ -800,8 +800,8 @@ var ExcellentStudentPieChart = {
 }
 
 // 区域资源建设
-var RegionalResourcesData = [10000, 11000, 12000, 13000, 14000, 15000, 16000, 14000, 10000]
-var RegionalResourcesChart = {
+let RegionalResourcesData = [10000, 11000, 12000, 13000, 14000, 15000, 16000, 14000, 10000]
+let RegionalResourcesChart = {
     tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
@@ -963,13 +963,13 @@ var RegionalResourcesChart = {
 }
 
 // 基于准备好的dom，初始化echarts实例
-var op1 = echarts.init(document.getElementById('RegionalTeachersChart'));
-var op2 = echarts.init(document.getElementById('RegionalTeachersLine'));
-var op3 = echarts.init(document.getElementById('RegionalStudentChart'));
-var op4 = echarts.init(document.getElementById('StudentPieChartChart-left'));
-var op5 = echarts.init(document.getElementById('StudentPieChartChart-right'));
-var op6 = echarts.init(document.getElementById('RegionalResourcesChart'));
-var op7 = echarts.init(document.getElementById('RegionalSchoolsChart'));
+let op1 = echarts.init(document.getElementById('RegionalTeachersChart'));
+let op2 = echarts.init(document.getElementById('RegionalTeachersLine'));
+let op3 = echarts.init(document.getElementById('RegionalStudentChart'));
+let op4 = echarts.init(document.getElementById('StudentPieChartChart-left'));
+let op5 = echarts.init(document.getElementById('StudentPieChartChart-right'));
+let op6 = echarts.init(document.getElementById('RegionalResourcesChart'));
+let op7 = echarts.init(document.getElementById('RegionalSchoolsChart'));
 // 使用刚指定的配置项和数据显示图表。
 op1.setOption(RegionalTeachers);
 op2.setOption(RegionalTeachersLine);

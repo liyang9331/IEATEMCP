@@ -1,0 +1,75 @@
+/* 三种字体 */
+.sm-blue {
+    font-size: 12px;
+    color: #00c6ff;
+    margin-right: 20px;
+  }
+  .sm-green {
+    font-size: 12px;
+    color: #60ff00;
+    margin-right: 20px;
+  }
+  .sm-orgin {
+    font-size: 12px;
+    color: #ffa400;
+    margin-right: 20px;
+  }
+
+  .public-span-sm {
+    text-align: center;
+    font-size: 18px;
+    color: #87d9ff;
+    margin-top: 60px;
+  }
+  .fz-14-blue {
+    font-size: 14px;
+    color: #87d9ff;
+  }
+  .fz-14-white {
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  /* 修改layui默认下三角的样式 */
+  .layui-icon-triangle-d {
+    color: #00c6ff !important;
+    cursor: pointer;
+  }
+  
+  
+  /* 注释 */
+  .notes {
+    font-size: 14px;
+    color: rgb(84, 102, 155);
+    text-align: right;
+    margin-top: 12px;
+  }
+  
+  /* 公共下拉选择框样式 */
+  .select-btn{
+    border: 1px solid #233b83;
+    background-color: #102153;
+    font-size: 14px;
+    text-align: center;
+    color: #87d9ff;
+  }
+  /* 公共椭圆按钮样式 */
+  .btn-ellipse{
+    border: 2px solid #4e81a3;
+    background-color: #020c29;
+    border-radius: 20%;
+    font-size: 14px;
+    color: #87d9ff;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+  /* 绝对定位 left：0 */
+  .pt-a-left{
+    position: absolute;
+    left: 0px;
+  }
+  /* 绝对定位 right：0 */
+  .pt-a-right{
+    position: absolute;
+    right: 0px;
+  }
