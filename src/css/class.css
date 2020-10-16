@@ -345,6 +345,7 @@
   border-radius: 5px;
   top: 50px;
   right: -126px;
+  z-index: 1;
 }
 .ListSubjects div {
   height: 390px;

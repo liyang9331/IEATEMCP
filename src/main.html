@@ -24,7 +24,7 @@
             <div class="head_contil">
                 <p style="font-size: 14px;color: #54669b;">欢迎您登录山东省教育资源数据管理平台!</br>{{Tdate}}</p>
                 <ul class="nav">
-                    <li class="active" onclick="tigert('index.html')">区域管理统计</li>
+                    <li class="active" onclick="tigert('main.html')">区域管理统计</li>
                     <li onclick="tigert('schools.html')">学校管理统计</li>
                     <li onclick="tigert('grade.html')">年级管理统计</li>
                     <li onclick="tigert('class.html')">班级管理统计</li>
@@ -49,12 +49,24 @@
                     <!-- 区域学校 -->
                     <div class="RegionalSchools public-span">
                         <p class="public-span-lg">区域学校</p>
-                        <!-- 四级联动 -->
-                        <p>
-                            <select id="area" class="RegionalResources-select" style="width: 78px;"></select>
-                            <select id="cmbProvince" class="RegionalResources-select" style="width: 78px;"></select>
-                            <select id="cmbCity" class="RegionalResources-select" style="width: 78px;"></select>
-                            <select id="cmbArea" class="RegionalResources-select"></select>
+                        <!-- 区域学校四级联动 -->
+                        <p >
+                            <!-- 省 -->
+                            <select class="RegionalResources-select" style="width: 78px;">
+                                <option v-for="(item,i) in provinceList.area">{{item}}</option>
+                            </select>
+                            <!-- 市 -->
+                            <select  class="RegionalResources-select" style="width: 78px;">
+                                <option v-for="(item,i) in provinceList.Allcity">{{item.name}}</option>
+                            </select>
+                            <!-- 县 -->
+                            <select class="RegionalResources-select" style="width: 78px;">
+                                <option v-for="(item,i) in provinceList.cityList">{{item.name}}</option>
+                            </select>
+                            <!-- 学校 -->
+                            <select  class="RegionalResources-select">
+                                <option v-for="(item,i) in provinceList.school">{{item.name}}</option>
+                            </select>
                         </p>
                         <p class="public-span-sm">区域学校数量</p>
                         <!-- 图例 -->
@@ -310,6 +322,7 @@
     </div>
 
     <!-- js脚本 -->
+    <script src="js/public.js"></script>
     <!-- jquery函数库 -->
     <script src="js/jquery.min.js"></script>
     <!-- vue核心 -->
@@ -326,10 +339,15 @@
     <script src="js/swiper_3.4.2_js.js"></script>
     <!-- 百度数据可视化 -->
     <script src="js/echarts.min.js"></script>
-    <!-- 下拉选择框四级联动 -->
-    <script src="js/jsAddress.js"></script>
+
+
+    <!-- 区域页面 定义数据 请求数据 -->
+    <script src="datajs/mainRequest.js"></script>
+    <!-- 定义Echart option -->
+    <script src="datajs/mainOption.js"></script>
     <!-- 首页js -->
-    <script src="index.js"></script>
+    <script src="main.js"></script>
+
 </body>
 
 </html>

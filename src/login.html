@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧教育教学应用管理中心平台-登录</title>
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        .login {
+            width: 300px;
+            height: 320px;
+            padding: 20px 30px 0 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            position: absolute;
+            top: 336px;
+            left: 1150px;
+        }
+
+        .btn {
+            width: 300px;
+            height: 40px;
+            background-color: #ff9900;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .fromt li:nth-child(1) {
+            margin-bottom: 45px;
+            font-size: 16px;
+            color: #333333;
+            display: flex;
+        }
+
+        .fromt li:nth-child(1) span {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .boxShow::after {
+            content: "";
+            display: inline-block;
+            width: 50px;
+            height: 3px;
+            background-color: #333333;
+            position: absolute;
+            top: 30px;
+            left: -86px;
+        }
+
+        .boxShow2::after {
+            content: "";
+            display: inline-block;
+            width: 50px;
+            height: 3px;
+            background-color: #333333;
+            position: absolute;
+            top: 30px;
+            left: -57px;
+        }
+
+        .fromt li:nth-child(2),
+        .fromt li:nth-child(3) {
+            height: 38px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding-left: 19px;
+            margin-bottom: 20px;
+        }
+
+        .fromt li:nth-child(4) {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .fromt li:nth-child(5) {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .input {
+            display: flex;
+        }
+
+        .input input {
+            font-size: 14px;
+            border: none;
+            margin-left: 10px;
+            outline: none;
+        }
+
+        .readme {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+            display: flex;
+        }
+    </style>
+</head>
+
+<body style="background-image: url(images/login.png);">
+    <div class="login" id="app">
+        <ul class="fromt">
+            <li>
+                <div>
+                    <span style="margin-right: 30px;" @click="SectionLogin">区级用户</span>
+                    <span class="boxShow" v-show="boxShow1"></span>
+                </div>
+                <div>
+                    <span @click="SchoolLogin">校级用户</span>
+                    <span class="boxShow2" v-show="boxShow2"></span>
+                </div>
+            </li>
+            <li>
+                <!-- 用户名 -->
+                <div class="input">
+                    <img src="src/images/login_01.jpg" alt=""><input type="text" placeholder="用户名" v-model="user">
+                </div>
+            </li>
+            <li>
+                <!-- 密码 -->
+                <div class="input"><img src="src/images/login_02.jpg" alt=""><input type="text" placeholder="密码"
+                        v-model="pwd"></div>
+            </li>
+            <li>
+                <div style="font-size: 14px;color: #999999;display: flex;align-items: center;cursor: pointer;"
+                    @click="readme">
+                    <span class="readme">
+                        <i class="layui-icon layui-icon-ok" style="font-size: 12px;" v-show="state"></i>
+                    </span>
+                    <span>记住我</span>
+                </div>
+                <a href="#" style="font-size: 14px;color: #999999;">忘记密码？</a>
+            </li>
+            <li>
+                <button class="btn" @click="login">登&nbsp;录</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.js"></script>
+    <script>
+        let vue = new Vue({
+            el: "#app",
+            data: {
+                state: false,
+                boxShow1: true,
+                boxShow2: false,
+                pwd: '',
+                user: '',
+            },
+            methods: {
+                readme() {
+                    this.state = !this.state
+                },
+                SectionLogin() {
+                    this.boxShow1 = true
+                    this.boxShow2 = false
+                },
+                SchoolLogin() {
+                    this.boxShow1 = false
+                    this.boxShow2 = true
+                },
+                login() {
+                    if (this.pwd == '' || this.user == '') {
+                        alert("请输入用户名和密码")
+                    } else {
+                        // axios.get('/api/areaList', {
+                        //         params: {
+                        //             province_id:370000,
+                        //             city_id:370500,
+                        //             area_id:370523
+                        //         }
+                        //     })
+                        //     .then(res => {
+                        //         console.log('数据是:', res);
+                        //     })
+                        //     .catch((e) => {
+                        //         console.log('获取数据失败');
+                        //     });
+                        // let province_id = 370000
+                        // $.cookie("dearedu":{
+                        //     province_id:province_id
+                        // })
+                        // 登录成功,跳转
+                        window.location = "main.html?id="
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
