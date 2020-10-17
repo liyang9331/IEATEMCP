@@ -21,19 +21,19 @@ let legend = ['最高分', '最低分', '平均分', '及格率', '优秀率']
 let color = ["#00c6ff", "#60ff00", "#ffa400", "#ff5353", "#ff7cd6", "#9f95ff", "#72dcc9"]
 // 雷达图数据
 let riceData = [
-        {
-            value: [100, 200, 200, 200, 200, 200, 200, 200, 200],
-            name: '',
-            // 设置区域边框和区域的颜色
-            itemStyle: {
-                normal: {
+    {
+        value: [100, 200, 200, 200, 200, 200, 200, 200, 200],
+        name: '',
+        // 设置区域边框和区域的颜色
+        itemStyle: {
+            normal: {
+                color: "#0c4b7f",
+                lineStyle: {
                     color: "#0c4b7f",
-                    lineStyle: {
-                        color: "#0c4b7f",
-                    },
                 },
             },
         },
+    },
 ]
 // 雷达图
 let circle = {
@@ -81,13 +81,13 @@ let circle = {
             },
         },
         indicator: [
-            { name: '课程包'+100, max: 1000 },
-            { name: '微课'+100, max: 1000 },
-            { name: '作业'+100, max: 1000 },
-            { name: '素材'+100, max: 1000 },
-            { name: '学案'+100, max: 1000 },
-            { name: '教案'+100, max: 1000 },
-            { name: '课件'+100, max: 1000 },
+            { name: '课程包' + 100, max: 1000 },
+            { name: '微课' + 100, max: 1000 },
+            { name: '作业' + 100, max: 1000 },
+            { name: '素材' + 100, max: 1000 },
+            { name: '学案' + 100, max: 1000 },
+            { name: '教案' + 100, max: 1000 },
+            { name: '课件' + 100, max: 1000 },
         ]
     },
     series: [
@@ -1567,7 +1567,7 @@ let ColumnLineChart = {
             type: 'bar',
             data: [100, 200, 300, 100, 200, 300, 100, 100, 200],
             stack: 1,
-            yAxisIndex:0,//选择以哪一个Y轴刻度为准
+            yAxisIndex: 0,//选择以哪一个Y轴刻度为准
             barWidth: 13, //图形宽度
             itemStyle: {
                 normal: {
@@ -1580,7 +1580,7 @@ let ColumnLineChart = {
             type: 'bar',
             data: [100, 200, 300, 100, 200, 300, 100, 100, 200],
             stack: 2,
-            yAxisIndex:0,//选择以哪一个Y轴刻度为准
+            yAxisIndex: 0,//选择以哪一个Y轴刻度为准
             barWidth: 13, //图形宽度
             itemStyle: {
                 normal: {
@@ -1593,7 +1593,7 @@ let ColumnLineChart = {
             type: 'bar',
             data: [100, 200, 300, 100, 200, 300, 100, 100, 200],
             stack: 3,
-            yAxisIndex:0,//选择以哪一个Y轴刻度为准
+            yAxisIndex: 0,//选择以哪一个Y轴刻度为准
             barWidth: 13, //图形宽度
             itemStyle: {
                 normal: {
@@ -1603,20 +1603,20 @@ let ColumnLineChart = {
         },
         // 概率
         {
-            name:'line',
+            name: 'line',
             data: [100, 50, 60, 45, 50, 60, 50, 60, 50],
             type: 'line',
-            yAxisIndex:1,
-            symbol:'circle',//折现拐点样式 圆圈
+            yAxisIndex: 1,
+            symbol: 'circle',//折现拐点样式 圆圈
             smooth: true,
-            smooh:true,
+            smooh: true,
             symbolSize: 10,
             barWidth: 40, //图形宽度
             // barCategoryGap: '10%',
             itemStyle: {
                 normal: {
                     color: 'none',
-                    borderColor:"#ff5353",
+                    borderColor: "#ff5353",
                     fontSize: 14,
                     lineStyle: {
                         width: 3, //折线宽度
@@ -1632,20 +1632,20 @@ let ColumnLineChart = {
             },
         },
         {
-            name:'line',
+            name: 'line',
             data: [90, 40, 50, 45, 70, 60, 80, 60, 50],
             type: 'line',
-            symbol:'circle',//折现拐点样式 圆圈
-            yAxisIndex:1,
+            symbol: 'circle',//折现拐点样式 圆圈
+            yAxisIndex: 1,
             smooth: true,
-            smooh:true,
+            smooh: true,
             symbolSize: 10,
             barWidth: 40, //图形宽度
             barCategoryGap: '10%',
             itemStyle: {
                 normal: {
-                    borderColor:"#fe7cd5",
-                    borderWidth:2,
+                    borderColor: "#fe7cd5",
+                    borderWidth: 2,
                     color: 'none',
                     fontSize: 14,
                     lineStyle: {
@@ -1656,7 +1656,7 @@ let ColumnLineChart = {
                     label: { show: false }
                 },
                 emphasis: {   //鼠标经过时折点小圆圈样式
-                    show:false,
+                    show: false,
                     borderColor: 'rgba(0,196,132,0.2)',
                     borderWidth: 10
                 }
@@ -1796,6 +1796,14 @@ let Dashboard = {
 let vue = new Vue({
     el: "#app",
     data: {
+        classInfo: [],
+        DemoClass: null, // 班级教学示范课
+        ClassTable: null, //班级课程表
+        ExamState: {
+            "ranking":[],
+            "rate":'',
+            "grap":''            
+        }, //班级成绩分析数据
         RegionalResources: RegionalResources,
         SchoolsTop10: SchoolsTop10,
         Tdate: Tdate(),
@@ -1863,18 +1871,7 @@ let vue = new Vue({
         }
     },
     created() {
-        axios({
-            method: "get",
-            baseURL: "http://cas.dearedu.com/region/cityTeacherCount?province_id=370000"
-        }).then(function (response) {
-            console.log(response)
-            //json格式化
-            let obj = str.parseJSON(response.data);
-        })
-            .catch(function (error) {
-                console.log(error)
-            })
-        console.log(11111)
+
     },
     beforeMount: function () {
         this.updateCity();
@@ -1893,7 +1890,80 @@ let vue = new Vue({
 
     },
     mounted() {
+        let serf = this
+        // 请求数据
+        axios
+            .get(api + '/classroom/getClassInfo', {
+                params: {
+                    class_id: 178
+                }
+            })
+            .then(res => {
+                serf.classInfo = res.data.data
+            })
+            .catch((e) => {
+                console.log('获取数据失败');
+            });
+        // 班级教学示范课
+        axios
+            .get(api + '/classroom/getClassModelCourse', {
+                params: {
+                    class_id: 178,
+                    page: 1,
+                    limit: 10
+                }
+            })
+            .then(res => {
+                serf.DemoClass = res.data.data
+                serf.DemoClass.forEach(element => {
+                    element.star_number = new Array(parseInt(element.star_number))
+                });
+            })
+            .catch((e) => {
+                console.log('获取数据失败');
+            });
 
+
+        // 班级课表安排
+        axios
+            .get(api + '/classroom/getTimetable', {
+                params: {
+                    class_id: 178,
+                }
+            })
+            .then(res => {
+                serf.DemoClass = res.data.data
+                console.log(serf.DemoClass)
+            })
+            .catch((e) => {
+                console.log('获取数据失败');
+            });
+        // 班级成绩分析
+        axios
+            .get(api + '/classroom/getExamState', {
+                params: {
+                    exam_id: 10,
+                }
+            })
+            .then(res => {
+                    let list = res.data.data.ranking
+                    let count = []
+                    for(let item in list){
+                        count.push(list[item].score)
+                    }
+                    count.sort(function(a, b){return b - a})
+                    for(let a=0;a<count.length;a++){
+                        for(let item in list){
+                            if(list[item].score == count[a]){
+                                list[item].rank=a+1
+                                serf.ExamState.ranking.push(list[item])
+                            }
+                        }
+                    }
+            })
+            .catch((e) => {
+                console.log('获取数据失败');
+            });
     }
 })
 
@@ -1904,7 +1974,7 @@ ERdata(
         { "id": "ExcellentRateTeachers", "data": RegionalTeachers },
         { "id": "TeachersPrepare", "data": TeachersPrepareEchart },
         // 仪表盘
-        {"id":"speedometer","data":speedometer},
+        { "id": "speedometer", "data": speedometer },
         // 班级总分排名人数
         { "id": "PictColumn", "data": PictColumn },
         // 柱状折线图

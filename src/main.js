@@ -1,48 +1,113 @@
 let vue = new Vue({
     el: "#app",
     data: {
-        RegionalResources: RegionalResources,
-        SchoolsTop10: SchoolsTop10,
         Tdate: Tdate(),
-        StarClass: StarClass,
         model: {
             total: 300,//总页数
             size: 5,//每页显示条目个数不传默认10
             page: 1,//当前页码
         },
         // 区域学校四级联动
-        SectionData:provinceList
+        SectionData: provinceList,
+        // 区域活跃值最高学校TOP10
+        SchoolsTop10: [],
+        StarClass: new Array(),
+        // 区域建设
+        RegionalResources: {
+            total:'',
+            data:[
+                { "name": "课件", "number": "120,308", "MonthlyAddition": "1,456", "color": "#00c6ff" },
+                { "name": "教案", "number": "120,308", "MonthlyAddition": "1,456", "color": "#60ff00" },
+                { "name": "学案", "number": "120,308", "MonthlyAddition": "1,456", "color": "#ce7f0d" },
+                { "name": "试卷", "number": "120,308", "MonthlyAddition": "1,456", "color": "#ce4750" },
+                { "name": "微课", "number": "120,308", "MonthlyAddition": "1,456", "color": "#ff7cd6" },
+                { "name": "素材", "number": "120,308", "MonthlyAddition": "1,456", "color": "#9f95ff" },
+                { "name": "题库", "number": "120,308", "MonthlyAddition": "1,456", "color": "#264d66" },
+            ]
+        }
     },
     methods: {
         //页码切换执行方法
         pageFn(val) {
             this.model.page = val;
-            console.log(val);
+            // axios请求
+            // total：总页数 
+            // size：每页显示条目个数不传默认10 
+            // page：设置默认页码，默认1 
+            // changge：页码切换方法触发，比如：传入pageFn方法接收page页码
         }
-        // axios请求
-        // total：总页数 
-        // size：每页显示条目个数不传默认10 
-        // page：设置默认页码，默认1 
-        // changge：页码切换方法触发，比如：传入pageFn方法接收page页码
     },
     beforeRouter() {
     },
     created() {
     },
     mounted() {
+        let serf = this
+        // 4. 请求区域学小top10
+        axios.get(api + 'region/getUserActiveRank', {
+            params: {
+                province_id: 370000
+            }
+        }).then(res => {
+            let list = res.data.data
+            list.forEach(element => {
+                serf.SchoolsTop10.push(
+                    { "SchoolName": element.name, "SchoolAttribute": element.section_name, "ActiveValue": element.rate_percent, "Ranking": 1 }
+                )
+            });
+        }).catch((e) => {
+            console.log('获取数据失败');
+        });
+        // 星选示范课数据
+        axios.get(api + 'region/getSchoolModelCourse', {
+            params: {
+                province_id: 370000, page: 1, limit: 10
+            }
+        })
+        .then((res) => {
+            // console.log(res.data.data)
+            let list = res.data.data
+            console.log(serf.StarClass)
+            list.forEach(item => {
+                serf.StarClass.push({ 'SchoolName': item.school_name, 'SchoolAttribute': item.section_name, 'grade': item.subject_name, 'subject': item.model_name, 'DemonstrationClass': item.grade_name, "StartLevel": new Array(parseInt(item.star_number)) })
+            })
+            console.log(serf.StarClass)
+        })
+        .catch((e) => {
+            console.log('获取数据失败');
+        });
+        // 区域建设
+        axios.get(api + 'region/getResourceCount', {
+            params: {
+                province_id: 370000
+            }
+        }).then((res) => {
+            
+            let list = res.data.data
+            serf.RegionalResources.total = list.total.total
 
+            serf.RegionalResources.data[0].number=list.total.course_num
+            serf.RegionalResources.data[1].number=list.total.teach_num
+            serf.RegionalResources.data[2].number=list.total.study_num
+            serf.RegionalResources.data[3].number=list.total.exam_num
+            serf.RegionalResources.data[4].number=list.total.weike_num
+            serf.RegionalResources.data[5].number=list.total.material_num
+            serf.RegionalResources.data[6].number=list.total.question_num
+
+            serf.RegionalResources.data[0].MonthlyAddition=list.near30day.course_num
+            serf.RegionalResources.data[1].MonthlyAddition=list.near30day.teach_num
+            serf.RegionalResources.data[2].MonthlyAddition=list.near30day.study_num
+            serf.RegionalResources.data[3].MonthlyAddition=list.near30day.exam_num
+            serf.RegionalResources.data[4].MonthlyAddition=list.near30day.weike_num
+            serf.RegionalResources.data[5].MonthlyAddition=list.near30day.material_num
+            serf.RegionalResources.data[6].MonthlyAddition=list.near30day.question_num
+
+            console.log(serf.RegionalResources)
+        }).catch((e) => {
+            console.log('获取数据失败');
+        });
     }
 })
-ERdata([
-    // 区域教师数量
-    { "id": "RegionalTeachersChart", "data": RegionalTeachers },
-    { "id": "RegionalTeachersLine", "data": RegionalTeachersLine },
-    { "id": "RegionalStudentChart", "data": RegionalStudent },
-    { "id": "StudentPieChartChart-left", "data": StudentPieChart },
-    { "id": "StudentPieChartChart-right", "data": ExcellentStudentPieChart },
-    { "id": "RegionalResourcesChart", "data": RegionalResourcesChart },
-    { "id": "RegionalSchoolsChart", "data": RegionalSchoolsEchart },
-])
 
 $("#RegionalTeachersDom,#RegionalTeachersLineDom,#RegionalStudentDom,#RegionalSchoolsDom,#SchoolsTop10").niceScroll({
     cursorcolor: "#54669b", // 改变滚动条颜色，使用16进制颜色值

@@ -237,6 +237,9 @@ var Tdate = function () {
 var vue = new Vue({
     el: "#app",
     data: {
+        // 学校人数统计
+        SchoolsNumber:[],
+        
         RegionalResources: RegionalResources,
         SchoolsTop10: SchoolsTop10,
         Tdate: Tdate(),
@@ -275,11 +278,8 @@ var vue = new Vue({
         console.log(11111)
     },
     beforeRouter() {
-
     },
-
     mounted() {
-
     }
 })
 

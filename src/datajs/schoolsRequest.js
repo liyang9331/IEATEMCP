@@ -50,7 +50,7 @@ let Tdate = function () {
 // 2.请求区域学校
 $.ajax({
     type: "GET",
-    url: api + "region/citySchoolCount?province_id=370000",
+    url: api + "citySchoolCount?province_id=370000",
     data: {},
     async: true,
     dataType: "json",
@@ -62,7 +62,7 @@ $.ajax({
 // 3. 请求区域学校数量
 $.ajax({
     type: "GET",
-    url: api + "region/citySchoolCount?province_id=370000",
+    url: api + "citySchoolCount?province_id=370000",
     data: {},
     async: true,
     dataType: "json",
@@ -238,7 +238,7 @@ $.ajax({
 // 5. 请求区域学校教师数量 定义对象 渲染
 $.ajax({
     type: "GET",
-    url: api + "region/cityTeacherCount?province_id=370000",
+    url: api + "cityTeacherCount?province_id=370000",
     data: {},
     async: true,
     dataType: "json",
@@ -420,7 +420,7 @@ $.ajax({
 // 6. 区域日活跃老师总人数 折线图 定义对象 渲染
 $.ajax({
     type: "GET",
-    url: api + "region/getCityTeacherActiveCount?province_id=370000",
+    url: api + "getCityTeacherActiveCount?province_id=370000",
     data: {},
     async: true,
     dataType: "json",
@@ -539,7 +539,7 @@ $.ajax({
 // 7. 区域建设图表
 $.ajax({
     type: "GET",
-    url: api + "region/getResourceCountChart?province_id=370000&section_id=3",
+    url: api + "getResourceCountChart?province_id=370000&section_id=3",
     data: {},
     async: true,
     dataType: "json",
@@ -747,7 +747,7 @@ $.ajax({
 // 8. 区域学生总人数图表
 $.ajax({
     type: "GET",
-    url: api + "region/cityStudentCount?province_id=370000",
+    url: api + "cityStudentCount?province_id=370000",
     data: {},
     async: true,
     dataType: "json",
@@ -928,7 +928,7 @@ $.ajax({
 // 9.区域年级学生总人数
 $.ajax({
     type: "GET",
-    url: api + "region/getCityStudentRate?province_id=370000",
+    url: api + "getCityStudentRate?province_id=370000",
     data: {},
     async: true,
     dataType: "json",
@@ -1037,7 +1037,7 @@ $.ajax({
 // 10.区域年级学生优秀人数
 $.ajax({
     type: "GET",
-    url: api + "region/getCityStudentRate?province_id=370000",
+    url: api + "getCityStudentRate?province_id=370000",
     data: {},
     async: true,
     dataType: "json",

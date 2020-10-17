@@ -17,7 +17,7 @@ gulp.task('server', function() {
         middleware: function(connect, opt) {
             return [
                 createProxyMiddleware('/api',  {
-                    target: 'http://cas.dearedu.com/region',//代理的目标地址
+                    target: 'http://cas.dearedu.com/',//代理的目标地址
                     changeOrigin:true,//
                     pathRewrite:{//路径重写规则 
                         '^/api':''

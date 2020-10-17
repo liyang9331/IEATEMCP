@@ -84,18 +84,19 @@
                         <!--  -->
                         <section style="margin-top:20px">
                             <p class="public-span-sm" style="margin-top: 0px;">区域活跃值最高学校TOP10</p>
-                            <div style="font-size:14px;color:#6073aa;background-color: #102153;
-                        height: 30px;
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: center;margin-top: 10px;">
-                                <span>学校名称</span>
-                                <span>学校属性</span>
-                                <span>活跃值</span>
-                                <span>排名</span>
-                            </div>
-                            <div>
+                            <div style="position: relative;padding-top: 30px;">
                                 <ul style="background-color: #020c29;height: 135px;" id="SchoolsTop10">
+                                    
+                                    <li style="font-size:14px;color:#6073aa;background-color: #102153;
+                                    height: 30px;
+                                    display: flex;
+                                    justify-content: space-around;
+                                    align-items: center;">
+                                        <span>学校名称</span>
+                                        <span>学校属性</span>
+                                        <span>活跃值</span>
+                                        <span>排名</span>
+                                    </li>
                                     <li style="height: 30px;border-bottom: 1px solid #102153;display: flex;
                                 justify-content: space-around;
                                 align-items: center;font-size:14px;color:#87d9ff;"
@@ -125,12 +126,13 @@
                     <!-- 区域教师数量-柱状图滚动条容器 -->
                     <div id="RegionalTeachersDom" style="height: 360px;width: 900px;margin-top: 5px;">
                         <!-- 柱状图容器 -->
-                        <div id="RegionalTeachersChart" style="height: 340px;width: 1500px;"></div>
+                        <div id="RegionalTeachersChart" style="height: 340px"></div>
                     </div>
 
                     <p class="public-span-sm">区域日活跃老师总人数</p>
                     <div class="legend">
-                        <span class="sm-blue"><span class="layui-badge-dot"></span>&nbsp;区域日活跃老师总人数</span>
+                        <span class="sm-blue"><span class="layui-badge-dot" style="background-color:#00c6ff">
+                        </span>&nbsp;区域日活跃老师总人数</span>
                     </div>
                     <!-- 区域日活跃老师总人数-折线图滚动条容器 -->
                     <div id="RegionalTeachersLineDom" style="height: 340px;width: 900px;margin-top: 25px;">
@@ -191,20 +193,20 @@
                     <!-- 星选示范课 -->
                     <section style="margin-top:20px;position: relative;">
                         <p class="public-span-sm" style="margin-top: 0px;">星选示范课</p>
-                        <div style="font-size:14px;color:#6073aa;background-color: #102153;
-                    height: 30px;
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;margin-top: 10px;">
-                            <span>学校名称</span>
-                            <span>学校属性</span>
-                            <span>年级</span>
-                            <span>学科</span>
-                            <span>示范课名称</span>
-                            <span>推荐星级</span>
-                        </div>
                         <div>
                             <ul style="background-color: #020c29;height: 135px;">
+                                <li style="font-size:14px;color:#6073aa;background-color: #102153;
+                                height: 30px;
+                                display: flex;
+                                justify-content: space-around;
+                                align-items: center;margin-top: 10px;">
+                                    <span>学校名称</span>
+                                    <span>学校属性</span>
+                                    <span>年级</span>
+                                    <span>学科</span>
+                                    <span>示范课名称</span>
+                                    <span>推荐星级</span>
+                                </li>
                                 <li style="height: 30px;border-bottom: 1px solid #102153;display: flex;
                             justify-content: space-around;
                             align-items: center;font-size:14px;color:#87d9ff;" v-for="(item,index) in StarClass">
@@ -234,13 +236,13 @@
                     <div class="TotalResources">
                         <div>
                             <p style="font-size: 18px;color: #87d9ff;">资源库资源总量</p>
-                            <p style="font-size: 30px;color: #ffffff;margin-top: 10px;">6,620,308</p>
+                            <p style="font-size: 30px;color: #ffffff;margin-top: 10px;">{{RegionalResources.total}}</p>
                         </div>
                     </div>
                     <div class="RegionalResources-head-right">
                         <ul>
                             <!-- 模板 -->
-                            <li v-for="(item,index) in RegionalResources">
+                            <li v-for="(item,index) in RegionalResources.data">
                                 <div style="width: 100%;">
                                     <p style="font-size: 14px;font-size: 14px;
                                     display: flex;
@@ -343,8 +345,6 @@
 
     <!-- 区域页面 定义数据 请求数据 -->
     <script src="datajs/mainRequest.js"></script>
-    <!-- 定义Echart option -->
-    <script src="datajs/mainOption.js"></script>
     <!-- 首页js -->
     <script src="main.js"></script>
 

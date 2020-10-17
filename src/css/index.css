@@ -151,6 +151,14 @@
   bottom: -223px;
   left: 240px;
 }
+#SchoolsTop10{
+  /* position: relative; */
+}
+#SchoolsTop10 li:nth-child(1){
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
 /* 1920 缩放 */
 @media screen and (min-width: 1920px) {
 }

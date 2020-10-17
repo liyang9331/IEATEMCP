@@ -1382,18 +1382,7 @@ let vue = new Vue({
         }
     },
     created() {
-        axios({
-            method: "get",
-            baseURL: "http://cas.dearedu.com/region/cityTeacherCount?province_id=370000"
-        }).then(function (response) {
-            console.log(response)
-            //json格式化
-            let obj = str.parseJSON(response.data);
-        })
-            .catch(function (error) {
-                console.log(error)
-            })
-        console.log(11111)
+
     },
     beforeMount: function () {
         this.updateCity();
@@ -1409,10 +1398,24 @@ let vue = new Vue({
         }
     },
     beforeRouter() {
-
     },
     mounted() {
-
+        // 请求数据
+        let serf = this
+        axios({
+            method: "get",
+            baseURL: api+"getClassInfo",
+            params: {
+                class_id:178
+             }
+        }).then(function (response) {
+            console.log(response)
+            //json格式化
+            let obj = str.parseJSON(response.data);
+        })
+            .catch(function (error) {
+                console.log(error)
+            })
     }
 })
 
